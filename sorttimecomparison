@@ -1,0 +1,80 @@
+public static void main(String args[]) {
+		int a []=new int [100];
+		long w2 = 0;
+		long d1 = 0;
+		sort (a, d1, w2); 
+		}
+		public static int [] sort (int []a,long d1,long w2) {
+			for (int i = 0; i < a.length; i++) { 
+			   a[i] = (int) (Math.random()*100+1); 
+			   }
+			boolean fl = true;
+			int b;
+			long before = System.currentTimeMillis();
+				while (fl) {
+					fl = false;
+					for (int j = 0;j < a.length-1; j++) {
+						if (a[j] > a[j+1]) {
+							fl = true;
+							b = a[j];
+							a[j] = a[j+1];
+							a[j+1] = b; 
+						}
+					}
+				}
+			for (int t:a) {
+				System.out.print("("+t+")");
+			}
+				System.out.println();
+				checksort(a);
+			long after = System.currentTimeMillis(); 
+				d1 = after-before;
+				System.out.println("Время сортировки = " + (d1) + " мс.");
+				System.out.println();
+		
+			long before1 = System.currentTimeMillis();
+			for (int i = 0; i < a.length; i++) {
+		        int min = a[i];
+		        int minIn = i;
+		        for (int j = i+1; j < a.length; j++) {
+		            if (a[j] < min) {
+		                min = a[j];
+		                minIn = j; 
+		            }
+		        }
+		        int n = a[i];
+		        a[i] = min;
+		        a[minIn] = n; 
+		    }
+		    for (int t:a) {
+				System.out.print("("+t+")"); 
+			}
+		    	System.out.println();
+				checksort(a);
+			long after1 = System.currentTimeMillis(); 
+		    	w2 = after1-before1;
+		    	System.out.println("Время сортировки = " + w2 + " мс.");
+		    		long h = w2 - d1;
+		    		System.out.println();
+		    		System.out.println("Разность во времени сортировки 1-м способом и 2-м = " + Math.abs(h) + " мс.");
+		    return a; 
+		    }
+		
+		public static int [] checksort(int a[]) {
+			int s = 0;
+			for (int i = 0; i < a.length-1; i++) {
+				if (a[i] > a[i+1]) {
+					s = s + 1; 
+				}
+			}
+				System.out.println();
+				if ( s > 0 ) {
+					System.out.println( "Sorted improperly"); 
+				}
+				else {
+					System.out.println( "Sorted properly"); 
+				}
+			
+			return a; 
+		}
+}
